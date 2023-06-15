@@ -1,38 +1,12 @@
-import { useState, useEffect } from "react";
-
+import {useTaskList} from './Hooks/useTaskList'
 export function TaskList() {
-  const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState("");
-
-  useEffect(() => {
-    const storedTasks = localStorage.getItem("tasks");
-    if (storedTasks) {
-      setTasks(JSON.parse(storedTasks));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-
-  const addTask = () => {
-    if (newTask !== "") {
-      const newCheck = {
-        id: Date.now(),
-        description: newTask,
-        completed: false
-      };
-      setTasks([...tasks, newCheck]);
-      setNewTask("");
-    }
-  };
-
-  const toggleTaskCompletion = (taskId) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, completed: !task.completed } : task
-    );
-    setTasks(updatedTasks);
-  };
+  const {
+    tasks,
+    newTask,
+    setNewTask,
+    addTask,
+    toggleTaskCompletion
+  } = useTaskList();
 
   return (
     <div>
@@ -43,9 +17,7 @@ export function TaskList() {
         onChange={(e) => setNewTask(e.target.value)}
       />
 
-      <button 
-      
-      onClick={addTask}>AGREGAR</button>
+      <button onClick={addTask}>AGREGAR</button>
 
       <ul>
         {tasks.map((task) => (

@@ -25,9 +25,7 @@ input {
 .container {
   margin: 50px; /* Establece un margen de 20px alrededor del contenedor */
   padding: 10px; /* Opcional: Establece un relleno de 10px dentro del contenedor */
-  
-  color:  #535bf2;
-  
+  color:  #535bf2; 
 }
 
 button {
