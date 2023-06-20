@@ -1,23 +1,37 @@
-import { useState } from 'react'
-import './App.css'
-import Header from './components/Header'
-import { TaskList } from './components/TaskList'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import { Menu } from "./components/Menu";
+import { Home } from "./page/Home";
+import { SobreNosotros } from "./page/SobreNosotros";
+import { Lista } from "./page/Lista";
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"></link>
+
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
+    
+    <BrowserRouter>
 
-      <div>
-        <Header />
-        <TaskList />
-        
-        
-      </div>
+    
+    
+      <Menu />
       
-  )
+     <Routes>
+      
+      <Route path="/" element={<Home />} />
+      <Route path="/SobreNosotros" element={<SobreNosotros />} />
+      <Route path="/Lista" element={<Lista />} />
+      
+      {/* <Route path="/TareasAgregadas" element={<TareasAgregadas />} /> */}
+      
+      </Routes>
+      
+    </BrowserRouter>
+    
+    
+  );
 }
 
-export default App
+export default App;
