@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export function Menu() {
   return (
-    <Flex direction="column" align="flex-start">
+    <Flex direction="column" align="flex-start" mb={8}>
       <Box p={4} bg="blue.300" mb={4}>
         <Text fontSize="l" fontWeight="bold">
           Menú
@@ -19,9 +19,9 @@ export function Menu() {
       <Box p={4} bg="gray.100">
         <Link to="/Lista">Agregar Tarea</Link>
       </Box>
-      <Box p={4} bg="gray.100">
+      {/* <Box p={4} bg="gray.100">
         <Link to="/TareasAgregadas">Tareas Agregadas</Link>
-      </Box>
+      </Box> */}
     </Flex>
   );
 }

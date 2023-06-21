@@ -1,5 +1,5 @@
 import { useTaskList } from "../hooks/useTaskList";
-import { Button, Input, Grid, GridItem } from '@chakra-ui/react'
+import { Button, Input, Grid, GridItem, Flex } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 
 export function Lista() {
@@ -10,7 +10,7 @@ export function Lista() {
     addTask,
     toggleTaskCompletion,
     handleDeleteTodo,
-    updateTask,
+    // updateTask,
   } = useTaskList();
 
   return (
@@ -37,6 +37,7 @@ export function Lista() {
         <ul>
           {tasks.map((task) => (
             <li key={task.id}>
+              
               <input
                 type="checkbox"
                 checked={task.completed}
@@ -57,14 +58,14 @@ export function Lista() {
               >
                 Borrar
               </Button> 
-              <Button
+              {/* <Button
                 colorScheme='green'
                 size='sm'
                 marginLeft={2}
                 onClick={() => updateTask(task.id, { name: "Tarea actualizada" })}
               >
                 Actualizar
-              </Button>
+              </Button> */}
             </li>
           ))}
         </ul>

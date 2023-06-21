@@ -4,7 +4,7 @@ import { Menu } from "./components/Menu";
 import { Home } from "./pages/Home";
 import { SobreNosotros } from "./pages/SobreNosotros";
 import { Lista } from "./pages/lista";
-import {TareasAgregadas} from "./pages/TareasAgregadas";
+// import {TareasAgregadas} from "./pages/TareasAgregadas";
 
 
 
@@ -24,7 +24,7 @@ function App() {
       <Route path="/SobreNosotros" element={<SobreNosotros />} />
       <Route path="/Lista" element={<Lista />} />
       
-      <Route path="/TareasAgregadas" element={<TareasAgregadas />} />
+      {/* <Route path="/TareasAgregadas" element={<TareasAgregadas />} /> */}
       
       </Routes>
       
