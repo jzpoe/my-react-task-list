@@ -1,21 +1,21 @@
-import { useContext } from "react"
-import { saveContext } from "../context/saveContex"
+// import { useContext } from "react"
+// import { saveContext } from "../context/saveContex"
 
 
 
 
 
-export const TareasAgregadas = () => {
+// export const TareasAgregadas = () => {
     
-    const {addTask} = useContext(saveContext)
-  return (
-    <div>
+//     const {addTask} = useContext(saveContext)
+//   return (
+//     <div>
 
-             <h3> {addTask} </h3>   
+//              <h3> {addTask} </h3>   
             
         
       
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 

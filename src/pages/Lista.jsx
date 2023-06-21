@@ -1,5 +1,5 @@
 import { useTaskList } from "../hooks/useTaskList";
-import { Button, Input, Grid, GridItem, Flex } from '@chakra-ui/react'
+import { Button, Input, Grid, GridItem } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 
 export function Lista() {
