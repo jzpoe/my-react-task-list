@@ -66,5 +66,22 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+<<<<<<< HEAD:src/index.css
 }
 
+=======
+} */
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+>>>>>>> dc72b496770d6abe9a85cac9d8da098d1b0c60f2:my-react-task-list/src/index.css
