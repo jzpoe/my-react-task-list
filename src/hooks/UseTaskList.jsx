@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 export const saveContext = createContext();
 
 export function useTaskList() {
+  const [dark, setDark] = useState(false);
   const [tasks, setTasks] = useState([]);
   const {
     handleSubmit,
@@ -11,6 +12,8 @@ export function useTaskList() {
     formState: { errors },
     reset
   } = useForm();
+
+  
 
   useEffect(() => {
     const storedTasks = localStorage.getItem("tasks");
@@ -25,13 +28,13 @@ export function useTaskList() {
 
   const addTask = (titulo, descripcion) => {
     if (titulo.trim() !== "") {
-      const newCheck = {
+      const newTask = {
         id: Date.now(),
         titulo,
         descripcion,
         completed: false
       };
-      setTasks([...tasks, newCheck]);
+      setTasks([...tasks, newTask]);
       reset(); // Limpiar los campos del formulario
     }
   };
@@ -47,6 +50,15 @@ export function useTaskList() {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
+  
+
+
+  const ToogleModeDark=(nextCheked)=>{
+
+    setDark(nextCheked)
+    console.log(nextCheked)
+  };
+
   return {
     tasks,
     addTask,
@@ -54,6 +66,7 @@ export function useTaskList() {
     handleDeleteTodo,
     handleSubmit,
     register,
-    errors
+    errors,
+    ToogleModeDark,
   };
 }

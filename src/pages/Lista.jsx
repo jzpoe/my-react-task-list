@@ -1,6 +1,10 @@
 import { useTaskList } from "../hooks/useTaskList";
 import { Button, Input, Grid, GridItem, Box } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
+import { BsTrash3 } from 'react-icons/bs';
+import ReactSwitch from 'react-switch'
+
+
 
 export function Lista() {
   const {
@@ -10,14 +14,19 @@ export function Lista() {
     handleDeleteTodo,
     handleSubmit,
     register,
-    errors
+    errors,
+    ToogleModeDark,
   } = useTaskList();
+
+  <ReactSwitch></ReactSwitch>
 
   const onSubmit = (data) => {
     addTask(data.titulo, data.descripcion);
   };
 
   return (
+
+    
     <Grid
       templateColumns="2fr 2fr"
       gap={10}
@@ -25,8 +34,12 @@ export function Lista() {
       maxW="1000px"
       textAlign="left"
     >
-      <GridItem >
+      <GridItem>
         <form onSubmit={handleSubmit(onSubmit)}>
+
+        <div className={ToogleModeDark ? 'dark-mode' : ''}>
+          <Button onClick={ToogleModeDark} >oscuro</Button>
+          </div>
           <Input
             size="sm"
             maxW="200px"
@@ -58,35 +71,36 @@ export function Lista() {
             type="text"
             {...register("descripcion")}
           />
-        </form>
-      </GridItem>
 
-      <GridItem>
-        <Button colorScheme="blue" onClick={handleSubmit(onSubmit)}>
-          <AddIcon />
-        </Button>
+          <Button colorScheme="blue" type="submit">
+            <AddIcon />
+          </Button>
+        </form>
       </GridItem>
 
       <GridItem>
         <ul>
           {tasks.map((task) => (
-            
-            <li  key={task.id}>
+            <li key={task.id}>
               <input
                 type="checkbox"
                 checked={task.completed}
                 onChange={() => toggleTaskCompletion(task.id)}
               />
-              <Box 
-              m={2} > <span
-                style={{
-                  textDecoration: task.completed ? "line-through" : "none"
-                }}
-              >
-                <Box  color="blue" fontFamily="arial"> <span >Tu Tarea</span> {task.titulo} </Box>
-                <Box color="green" fontFamily="arial"><span >Descripcion</span> {task.descripcion}</Box>
-                  
-              </span>
+              <Box m={2}>
+                <span
+                  style={{
+                    
+                    textDecoration: task.completed ? "line-through" : "none"
+                  }}
+                >
+                  <Box color="blue" fontFamily="arial">
+                    <span>Tu Tarea</span> {task.titulo}
+                  </Box>
+                  <Box color="green" fontFamily="arial">
+                    <span>Descripcion</span> {task.descripcion}
+                  </Box>
+                </span>
               </Box>
               <Button
                 colorScheme="red"
@@ -94,7 +108,7 @@ export function Lista() {
                 size="sm"
                 onClick={() => handleDeleteTodo(task.id)}
               >
-                Borrar
+                <BsTrash3/>
               </Button>
             </li>
           ))}
