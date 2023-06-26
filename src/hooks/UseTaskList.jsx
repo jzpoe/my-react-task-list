@@ -46,7 +46,12 @@ export function useTaskList() {
   };
 
   const handleDeleteTodo = (taskId) => {
-    setTasks(tasks.filter((task) => task.id !== taskId));
+    
+    const confirmacion  = window.confirm("¿esta seguro de eliminar todo?")
+    
+        if (confirmacion)
+        setTasks(tasks.filter((task) => task.id !== taskId));
+
   };
 
   const handleEditTask = (taskId) => {
@@ -67,6 +72,16 @@ export function useTaskList() {
     reset();
   };
 
+    const deleteAll = () => {
+      if (tasks.length > 0) {
+
+        const confirmacion  = window.confirm("¿esta seguro de eliminar todo?")
+        
+        if (confirmacion)
+        setTasks([]);
+      }
+    };
+
   return {
     tasks,
     addTask,
@@ -77,6 +92,7 @@ export function useTaskList() {
     errors,
     handleEditTask,
     updateTask,
-    editingTaskId
+    editingTaskId,
+    deleteAll,
   };
 }

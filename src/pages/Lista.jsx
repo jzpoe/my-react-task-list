@@ -15,7 +15,8 @@ export function Lista() {
     errors,
     handleEditTask,
     updateTask,
-    editingTaskId
+    editingTaskId,
+    deleteAll,
   } = useTaskList();
 
   const onSubmit = (data) => {
@@ -111,9 +112,11 @@ export function Lista() {
               <Button size="sm" colorScheme="blue"  onClick={() => handleEditTask(task.id)}>
                 <AiOutlineEdit />
               </Button>
+              
             </li>
           ))}
         </ul>
+        <Button onClick={deleteAll}>Eliminar todo</Button>
       </GridItem>
     </Grid>
   );
