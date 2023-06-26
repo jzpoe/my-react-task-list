@@ -31,5 +31,6 @@ ReactDOM.render(
       </React.StrictMode>
     </Box>
   </ChakraProvider>,
+  
   document.getElementById('root')
 );

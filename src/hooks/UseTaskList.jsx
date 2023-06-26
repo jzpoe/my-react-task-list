@@ -4,16 +4,15 @@ import { useForm } from "react-hook-form";
 export const saveContext = createContext();
 
 export function useTaskList() {
-  const [dark, setDark] = useState(false);
+  const [editingTaskId, setEditingTaskId] = useState(null);
   const [tasks, setTasks] = useState([]);
   const {
     handleSubmit,
     register,
     formState: { errors },
-    reset
+    reset,
+    setValue
   } = useForm();
-
-  
 
   useEffect(() => {
     const storedTasks = localStorage.getItem("tasks");
@@ -50,13 +49,22 @@ export function useTaskList() {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
-  
+  const handleEditTask = (taskId) => {
+    setEditingTaskId(taskId);
+    const taskToEdit = tasks.find((task) => task.id === taskId);
+    if (taskToEdit) {
+      setValue("titulo", taskToEdit.titulo);
+      setValue("descripcion", taskToEdit.descripcion);
+    }
+  };
 
-
-  const ToogleModeDark=(nextCheked)=>{
-
-    setDark(nextCheked)
-    console.log(nextCheked)
+  const updateTask = (taskId, updatedData) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === taskId ? { ...task, ...updatedData } : task
+    );
+    setTasks(updatedTasks);
+    setEditingTaskId(null);
+    reset();
   };
 
   return {
@@ -67,6 +75,8 @@ export function useTaskList() {
     handleSubmit,
     register,
     errors,
-    ToogleModeDark,
+    handleEditTask,
+    updateTask,
+    editingTaskId
   };
 }

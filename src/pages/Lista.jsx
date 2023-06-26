@@ -2,9 +2,7 @@ import { useTaskList } from "../hooks/useTaskList";
 import { Button, Input, Grid, GridItem, Box } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import { BsTrash3 } from 'react-icons/bs';
-
-
-
+import { AiOutlineEdit } from 'react-icons/ai';
 
 export function Lista() {
   const {
@@ -15,18 +13,23 @@ export function Lista() {
     handleSubmit,
     register,
     errors,
-    ToogleModeDark,
+    handleEditTask,
+    updateTask,
+    editingTaskId
   } = useTaskList();
 
-  <ReactSwitch></ReactSwitch>
-
   const onSubmit = (data) => {
-    addTask(data.titulo, data.descripcion);
+    if (editingTaskId) {
+      updateTask(editingTaskId, {
+        titulo: data.titulo,
+        descripcion: data.descripcion
+      });
+    } else {
+      addTask(data.titulo, data.descripcion);
+    }
   };
 
   return (
-
-    
     <Grid
       templateColumns="2fr 2fr"
       gap={10}
@@ -36,10 +39,6 @@ export function Lista() {
     >
       <GridItem>
         <form onSubmit={handleSubmit(onSubmit)}>
-
-        <div className={ToogleModeDark ? 'dark-mode' : ''}>
-          <Button onClick={ToogleModeDark} >oscuro</Button>
-          </div>
           <Input
             size="sm"
             maxW="200px"
@@ -90,7 +89,6 @@ export function Lista() {
               <Box m={2}>
                 <span
                   style={{
-                    
                     textDecoration: task.completed ? "line-through" : "none"
                   }}
                 >
@@ -108,7 +106,10 @@ export function Lista() {
                 size="sm"
                 onClick={() => handleDeleteTodo(task.id)}
               >
-                <BsTrash3/>
+                <BsTrash3 />
+              </Button>
+              <Button size="sm" colorScheme="blue"  onClick={() => handleEditTask(task.id)}>
+                <AiOutlineEdit />
               </Button>
             </li>
           ))}
