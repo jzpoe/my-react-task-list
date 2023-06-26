@@ -2,7 +2,7 @@ import { useTaskList } from "../hooks/useTaskList";
 import { Button, Input, Grid, GridItem, Box } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import { BsTrash3 } from 'react-icons/bs';
-import ReactSwitch from 'react-switch'
+
 
 
 
