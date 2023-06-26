@@ -18,17 +18,19 @@ const theme = extendTheme({
 ReactDOM.render(
   <ChakraProvider theme={theme}>
     <CSSReset />
-    <Box
+    {/* <Box
       bgImage={`linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url('https://assets.asana.biz/m/5718a254c9823a03/webimage-article-project-management-make-better-to-do-lists-2x.png')`}
       
       bgSize="cover"
       bgPosition="center"
       minHeight="100vh"
-    >
+    > */}
+    <Box>
       <React.StrictMode>
         <App />
       </React.StrictMode>
     </Box>
   </ChakraProvider>,
+  
   document.getElementById('root')
 );

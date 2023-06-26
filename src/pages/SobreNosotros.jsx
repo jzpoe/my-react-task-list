@@ -16,7 +16,7 @@ export const SobreNosotros = () => {
       </Flex>
 
       <Box
-        color="white"
+        color="black"
         fontFamily="Arial"
         maxW="500px"
         textAlign="left"

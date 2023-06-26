@@ -1,12 +1,18 @@
-import { useState, useEffect, Children } from "react";
-import { saveContext } from "../context/saveContex";
+import { useState, useEffect, createContext } from "react";
+import { useForm } from "react-hook-form";
 
-
-
+export const saveContext = createContext();
 
 export function useTaskList() {
+  const [editingTaskId, setEditingTaskId] = useState(null);
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState("");
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    reset,
+    setValue
+  } = useForm();
 
   useEffect(() => {
     const storedTasks = localStorage.getItem("tasks");
@@ -19,15 +25,16 @@ export function useTaskList() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  const addTask = () => {
-    if (newTask !== "") {
-      const newCheck = {
+  const addTask = (titulo, descripcion) => {
+    if (titulo.trim() !== "") {
+      const newTask = {
         id: Date.now(),
-        description: newTask,
+        titulo,
+        descripcion,
         completed: false
       };
-      setTasks([...tasks, newCheck]);
-      setNewTask("");
+      setTasks([...tasks, newTask]);
+      reset(); // Limpiar los campos del formulario
     }
   };
 
@@ -38,35 +45,54 @@ export function useTaskList() {
     setTasks(updatedTasks);
   };
 
-  const handleDeleteTodo = taskId => {
-		setTasks(tasks.filter((task) => task.id !== taskId));
-	};
+  const handleDeleteTodo = (taskId) => {
+    
+    const confirmacion  = window.confirm("¿esta seguro de eliminar todo?")
+    
+        if (confirmacion)
+        setTasks(tasks.filter((task) => task.id !== taskId));
 
-  const updateTask = (taskId, updatedTask) => {
-    setTasks(
-      tasks.map((task) => (task.id === taskId ? { ...task, ...updatedTask } : task))
-    );
   };
 
-  <saveContext.Provider value={addTask}>
-  
-  {Children}
+  const handleEditTask = (taskId) => {
+    setEditingTaskId(taskId);
+    const taskToEdit = tasks.find((task) => task.id === taskId);
+    if (taskToEdit) {
+      setValue("titulo", taskToEdit.titulo);
+      setValue("descripcion", taskToEdit.descripcion);
+    }
+  };
 
-  </saveContext.Provider>
-  
+  const updateTask = (taskId, updatedData) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === taskId ? { ...task, ...updatedData } : task
+    );
+    setTasks(updatedTasks);
+    setEditingTaskId(null);
+    reset();
+  };
+
+    const deleteAll = () => {
+      if (tasks.length > 0) {
+
+        const confirmacion  = window.confirm("¿esta seguro de eliminar todo?")
+        
+        if (confirmacion)
+        setTasks([]);
+      }
+    };
+
   return {
-    
     tasks,
-    newTask,
-    setNewTask,
     addTask,
     toggleTaskCompletion,
     handleDeleteTodo,
+    handleSubmit,
+    register,
+    errors,
+    handleEditTask,
     updateTask,
-    useEffect,
-  
-
-    
-    
+    editingTaskId,
+    deleteAll,
   };
 }
