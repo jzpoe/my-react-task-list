@@ -1,6 +1,7 @@
 import { Box, Heading, Flex } from "@chakra-ui/react";
 export const SobreNosotros = () => {
   return (
+    <Flex justify="center" align="center">
     <Box>
       <Flex
         align="center"
@@ -18,7 +19,7 @@ export const SobreNosotros = () => {
       <Box
         color="black"
         fontFamily="Arial"
-        maxW="500px"
+        maxW="700px"
         textAlign="left"
         border="2px solid #000000"
         borderRadius="md"
@@ -37,5 +38,6 @@ export const SobreNosotros = () => {
         nuestra aplicación!
       </Box>
     </Box>
+    </Flex>
   );
 };

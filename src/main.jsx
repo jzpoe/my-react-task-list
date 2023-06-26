@@ -1,15 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { ChakraProvider, CSSReset, extendTheme, Box } from '@chakra-ui/react';
+import ReactDOM from 'react-dom';
+
 import App from './App';
 import './index.css';
 
 const theme = extendTheme({
   styles: {
     global: {
-      body: {
+     body: {
         margin: 0,
         padding: 0,
+        bg: "blue.100",
       },
     },
   },

@@ -73,7 +73,7 @@ export function useTaskList() {
   };
 
     const deleteAll = () => {
-      if (tasks.length > 0) {
+      if (tasks.length > 0  && tasks != tasks) {
 
         const confirmacion  = window.confirm("¿esta seguro de eliminar todo?")
         
